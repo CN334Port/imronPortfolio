@@ -183,7 +183,7 @@ function DashboardContent() {
             <AdminProjects />
 
 
-            <Button onClick={handleToggle}>Show backdrop</Button>
+            <Button onClick={handleToggle}>New Project</Button>
             <Backdrop
               sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
               open={state.backdrop}

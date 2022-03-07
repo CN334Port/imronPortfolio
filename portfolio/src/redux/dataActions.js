@@ -141,6 +141,26 @@ export const editProject = (token, content, id) => async (dispatch) => {
 
 }
 
+export const deleteProject = (token, id) => async (dispatch) => {
+    
+    var url = "http://127.0.0.1:8000/api/projects/" + id;
+    const config = {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    };
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+    await axios.delete(url, config)
+        .then(response => {
+            console.log(response);
+            // dispatch({ type: EDIT_PROJECT, payload: response.data })
+        })
+        .catch(error => (console.log(error)))
+
+}
+
+
 export const getProfile = () => async (dispatch) => {
     var url = "http://127.0.0.1:8000/api/userinfo";
     await fetch(url, {

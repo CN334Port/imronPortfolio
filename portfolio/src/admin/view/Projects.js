@@ -3,7 +3,7 @@ import { Grid, Paper, Button, Typography } from '@mui/material';
 import TextField from '../../modules/components/TextField';
 
 import { useSelector, useDispatch } from "react-redux";
-import { editProject } from '../../redux/dataActions'
+import { deleteProject, editProject } from '../../redux/dataActions'
 
 
 
@@ -76,14 +76,28 @@ function AdminProjects() {
                                 variant="standard"
                             />
 
-                            <Button
-                                size="small"
-                                target="_blank"
-                                type='submit'
-                                sx={{ marginTop: 3 }}
-                            >
-                                SUBMIT
-                            </Button>
+                            <Grid container textAlign='center' spacing={5}>
+                                <Grid item xs={6}>
+                                    <Button
+                                        size="small"
+                                        target="_blank"
+                                        type='submit'
+                                        sx={{ marginTop: 3 }}
+                                    >
+                                        SUBMIT
+                                    </Button>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Button
+                                        size="small"
+                                        target="_blank"
+                                        onClick={() => { dispatch(deleteProject(user.user.token, data.id)) }}
+                                        sx={{ marginTop: 3 }}
+                                    >
+                                        DELETE
+                                    </Button>
+                                </Grid>
+                            </Grid>
 
                         </Paper>
                     </Grid>
