@@ -4,11 +4,20 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 // import Dashboard from './screen/Dashboard'
-import AdminDashboard from './dashboard/AdminDashboard'
+import AdminDashboard from './admin/view/AdminDashboard'
+import AdminProjects from './admin/view/Projects'
+import AdminPortfolio from './admin/view/Portfolio'
+import AdminContact from './admin/view/Contact'
+import AdminAbout from './admin/view/About'
+
+
+
 import Portfolio from "./screen/Portfolio"
 import Projects from "./screen/Projects"
 import About from "./screen/About"
 import Contact from "./screen/Contact"
+
+
 // import SignIn from './screen/SignIn'
 import SignIn from './authScreen/SignIn'
 import SignUp from './authScreen/SignUp'
@@ -33,7 +42,13 @@ function App() {
         
         <Switch>
           <Route exact path="/" component={Home} />
+
           <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
+          <AdminRoute exact path="/admin/project" component={AdminProjects} />
+          <AdminRoute exact path="/admin/portfolio" component={AdminPortfolio} />
+          <AdminRoute exact path="/admin/contact" component={AdminContact} />
+          <AdminRoute exact path="/admin/about" component={AdminAbout} />
+
           <Route exact path="/about" component={About} />
           {/* <Route exact path="/dashboard" component={Dashboard} /> */}
           <Route exact path="/portfolio" component={Portfolio} />

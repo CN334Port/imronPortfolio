@@ -1,4 +1,4 @@
-import { ADD_PROJECT, EDIT_PROJECT, DELETE_PROJECT, SIGN_IN, SIGN_OUT, GET_PROFILE, EDIT_PROFILE } from './types';
+import { ADD_PROJECT, EDIT_PROJECT, DELETE_PROJECT, GET_PROJECT, SIGN_IN, SIGN_OUT, GET_PROFILE, EDIT_PROFILE, NAVIGATIONDRAWER, SET_BACKDROP } from './types';
 import axios from 'axios';
 import cookie from 'js-cookie';
 import { Redirect, Route } from 'react-router-dom';
@@ -91,19 +91,53 @@ export const signOut = (token) => async (dispatch) => {
         .catch(error => (console.log(error)))
 }
 
-export const getProject = () => (dispatch) => {
-
+export const getProjects = () => async (dispatch) => {
+    var url = "http://127.0.0.1:8000/api/projects";
+    await fetch(url, {
+        method: 'GET',
+    }).then(responseJson => responseJson.json())
+        .then(result => {
+            dispatch({ type: GET_PROJECT, payload: result })
+        })
+        .catch(error =>
+            console.log(error)
+        )
 }
 
-export const addProject = () => (dispatch) => {
-
+export const addProject = (token, content) => async (dispatch) => {
+    var url = "http://127.0.0.1:8000/api/projects/";
+    const config = {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    };
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+    await axios.post(url, content, config)
+        .then(response => {
+            console.log(response);
+            // dispatch({ type: EDIT_PROJECT, payload: response.data })
+        })
+        .catch(error => (console.log(error)))
 }
 
-export const editProject = () => (dispatch) => {
 
-}
-
-export const deleteProject = () => (dispatch) => {
+export const editProject = (token, content, id) => async (dispatch) => {
+    console.log(content);
+    var url = "http://127.0.0.1:8000/api/projects/" + id;
+    const config = {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    };
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+    await axios.put(url, content, config)
+        .then(response => {
+            console.log(response);
+            // dispatch({ type: EDIT_PROJECT, payload: response.data })
+        })
+        .catch(error => (console.log(error)))
 
 }
 
@@ -124,7 +158,7 @@ export const getProfile = () => async (dispatch) => {
 
 export const editProfile = (token, content) => async (dispatch) => {
 
-    var url = "http://127.0.0.1:8000/api/userinfo/1";
+    var url = "http://127.0.0.1:8000/api/projects/" + content.id;
     const config = {
         headers: {
             'Accept': 'application/json',
@@ -134,8 +168,17 @@ export const editProfile = (token, content) => async (dispatch) => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
     await axios.put(url, content, config)
         .then(response => {
-            dispatch({ type: EDIT_PROFILE, payload: response.data })
+            dispatch({ type: EDIT_PROJECT, payload: response.data })
         })
         .catch(error => (console.log(error)))
 
+}
+
+export const setNevigateDrawer = (val) => (dispatch) => {
+    console.log(val);
+    dispatch({ type: NAVIGATIONDRAWER, payload: val })
+}
+
+export const setBackdrop = () => (dispatch) => {
+    dispatch({ type: SET_BACKDROP })
 }

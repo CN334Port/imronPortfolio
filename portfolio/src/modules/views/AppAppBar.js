@@ -1,22 +1,26 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
+import CustomLink from '../components/CustomLink';
 import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
 import MenuBar from './MenuBar';
 
 import { useSelector, useDispatch } from "react-redux";
 import { signOut } from '../../redux/dataActions'
+import { Typography } from '@mui/material';
 
 const rightLink = {
   fontSize: 16,
   color: 'common.white',
   ml: 3,
+
 };
 const leftLink = {
   fontSize: 16,
   color: 'common.white',
   ml: 3,
+  variant: 'h6'
 };
 
 
@@ -35,61 +39,67 @@ function AppAppBar() {
           </Box>
           <Box sx={{ flex: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-start' }}>
             <Link
-              variant="h6"
-              underline="none"
-              color="inherit"
-              href="/project"
-              sx={leftLink}
+              style={{ textDecoration: 'none' }}
+              to="/project"
             >
-              {'project'}
+              <Typography
+                variant='h6'
+                sx={leftLink}>
+                {'project'}
+              </Typography>
             </Link>
             <Link
-              variant="h6"
-              underline="none"
-              color="inherit"
-              href="/portfolio"
-              sx={leftLink}
+              style={{ textDecoration: 'none' }}
+              to="/portfolio"
             >
-              {'portfolio'}
+              <Typography
+                
+                variant='h6'
+                sx={leftLink}>
+                {'portfolio'}
+              </Typography>
             </Link>
             <Link
-              variant="h6"
-              underline="none"
-              color="inherit"
-              href="/contact"
-              sx={leftLink}
+              style={{ textDecoration: 'none' }}
+              to="/contact"
             >
-              {'contact'}
+              <Typography
+                variant='h6'
+                sx={leftLink}>
+                {'contact'}
+              </Typography>
             </Link>
             <Link
-              variant="h6"
-              underline="none"
-              color="inherit"
-              href="/about"
-              sx={leftLink}
+              style={{ textDecoration: 'none' }}
+              to="/about"
             >
-              {'about'}
+              <Typography
+                variant='h6'
+                sx={leftLink}>
+                {'about'}
+              </Typography>
             </Link>
           </Box>
           <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            href="/"
-            sx={{ fontSize: 24, paddingInline: 'inherit' }}
+            style={{ textDecoration: 'none' }}
+            to="/"
           >
-            {'portfolio'}
+            <Typography
+              variant='h6'
+              sx={{ fontSize: 24, paddingInline: 'inherit' }}>
+              {'portfolio'}
+            </Typography>
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
 
-            {user.authenticated ? (<Link
+            {user.authenticated ? (<CustomLink
               variant="h6"
               underline="none"
               onClick={() => { dispatch(signOut(user.user.token)) }}
               sx={{ ...rightLink, color: 'secondary.main' }}
             >
               {'Sign Out'}
-            </Link>) : (<Link
+            </CustomLink>) : (<CustomLink
               color="inherit"
               variant="h6"
               underline="none"
@@ -97,7 +107,7 @@ function AppAppBar() {
               sx={rightLink}
             >
               {'Sign In'}
-            </Link>)}
+            </CustomLink>)}
 
 
           </Box>

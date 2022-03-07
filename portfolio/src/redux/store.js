@@ -8,6 +8,8 @@ const initialState = {
     authenticated: false,
     projects: null,
     user: null,
+    drawer: { dashboard: true, project: false, portfolio: false, contact: false, about: false },
+    backdrop: false,
 };
 
 const middleware = [thunk];

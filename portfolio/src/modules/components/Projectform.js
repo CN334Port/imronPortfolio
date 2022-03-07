@@ -10,11 +10,12 @@ import { alpha } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 import withRoot from '../withRoot';
 
-function Projectform() {
-    var name = 'asdsad';
-    var description = 'asdsadad';
-    var link = 'https://stackoverflow.com/questions/45535913/setting-authorization-header-in-fetch-api';
-    var language = 'asdsadsa';
+function Projectform({children}) {
+    console.log(children)
+    var name = children.name;
+    var description = children.description;
+    var link = children.link;
+    var language = children.language;
 
     return (
         <Card sx={{ minWidth: 275, minHeight: 275, borderRadius: 0, paddingBottom: 1, bgcolor:"#fff5f8" }}>

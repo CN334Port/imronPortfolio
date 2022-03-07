@@ -17,11 +17,17 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './listitems';
+import { mainListItems, secondaryListItems } from '../listitems';
 
-import Deposits from './Deposits';
-import Orders from './Orders';
-import withRoot from '../modules/withRoot';
+import Deposits from '../Deposits';
+import Orders from '../Orders';
+import withRoot from '../../modules/withRoot';
+import AdminProjects from './Projects';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProjects, setBackdrop } from '../../redux/dataActions';
+import { Backdrop, CircularProgress, Button } from '@mui/material';
+import Projectform from '../form/Projectform';
+
 
 function Copyright(props) {
   return (
@@ -84,10 +90,22 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 
 function DashboardContent() {
+  const dispatch = useDispatch();
+  const state = useSelector(state => state)
+
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  const handleToggle = () => {
+    dispatch(setBackdrop())
+  };
+
+
+  React.useEffect(() => {
+    dispatch(getProjects())
+  }, [])
 
   return (
     <>
@@ -161,40 +179,19 @@ function DashboardContent() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  {/* <Chart /> */}
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
-                </Paper>
-              </Grid>
-            </Grid>
+
+            <AdminProjects />
+
+
+            <Button onClick={handleToggle}>Show backdrop</Button>
+            <Backdrop
+              sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={state.backdrop}
+
+            >
+              <Projectform />
+            </Backdrop>
+
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
