@@ -5,12 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 // import Dashboard from './screen/Dashboard'
 import AdminDashboard from './admin/view/AdminDashboard'
-import AdminProjects from './admin/view/Projects'
-import AdminPortfolio from './admin/view/Portfolio'
-import AdminContact from './admin/view/Contact'
-import AdminAbout from './admin/view/About'
-
-
 
 import Portfolio from "./screen/Portfolio"
 import Projects from "./screen/Projects"
@@ -29,26 +23,30 @@ import Home from './screen/Home'
 
 import AdminRoute from './route/AdminRoute'
 import GuestRoute from './route/GuestRoute'
+import AdminProjects from './admin/view/Projects'
+import AdminAbout from './admin/view/About'
+import AdminContact from './admin/view/Contact'
+import AdminPortfolio from './admin/view/Portfolio'
 
 
 function App() {
   return (
     <>
       {/* <ToggleColorMode> */}
+      
 
-
-
+   
       <Router>
         
         <Switch>
           <Route exact path="/" component={Home} />
 
-          <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
+          <AdminRoute exact path="/admin/dashboard" component={AdminProjects} />
           <AdminRoute exact path="/admin/project" component={AdminProjects} />
           <AdminRoute exact path="/admin/portfolio" component={AdminPortfolio} />
           <AdminRoute exact path="/admin/contact" component={AdminContact} />
           <AdminRoute exact path="/admin/about" component={AdminAbout} />
-
+  
           <Route exact path="/about" component={About} />
           {/* <Route exact path="/dashboard" component={Dashboard} /> */}
           <Route exact path="/portfolio" component={Portfolio} />

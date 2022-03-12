@@ -22,7 +22,7 @@ import { mainListItems, secondaryListItems } from '../listitems';
 import Deposits from '../Deposits';
 import Orders from '../Orders';
 import withRoot from '../../modules/withRoot';
-import AdminProjects from './Projects';
+// import AdminProjects from './Projects';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProjects, setBackdrop } from '../../redux/dataActions';
 import { Backdrop, CircularProgress, Button } from '@mui/material';
@@ -89,7 +89,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 
-function DashboardContent() {
+function DashboardContent({props}) {
+  
   const dispatch = useDispatch();
   const state = useSelector(state => state)
 
@@ -180,14 +181,13 @@ function DashboardContent() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
 
-            <AdminProjects />
+            {props}
 
 
             <Button onClick={handleToggle}>New Project</Button>
             <Backdrop
               sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
               open={state.backdrop}
-
             >
               <Projectform />
             </Backdrop>
@@ -200,8 +200,8 @@ function DashboardContent() {
   );
 }
 
-function AdminDashboard() {
-  return <DashboardContent />;
+function AdminDashboard({props}) {
+  return <DashboardContent props={props}/>;
 }
 
 export default withRoot(AdminDashboard);

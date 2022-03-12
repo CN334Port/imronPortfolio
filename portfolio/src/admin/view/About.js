@@ -2,12 +2,13 @@ import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Title from '../Title';
+import AdminDashboard from './AdminDashboard';
 
 function preventDefault(event) {
     event.preventDefault();
 }
 
-function AdminAbout() {
+function AbountContent(params) {
     return (
         <React.Fragment>
             <Title>Recent Deposits</Title>
@@ -24,6 +25,12 @@ function AdminAbout() {
             </div>
         </React.Fragment>
     );
+}
+
+function AdminAbout() {
+    return (
+        <AdminDashboard props={<AbountContent />} />
+    )
 }
 
 export default AdminAbout;

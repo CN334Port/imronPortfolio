@@ -2,12 +2,14 @@ import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Title from '../Title';
+import AdminDashboard from './AdminDashboard';
 
 function preventDefault(event) {
     event.preventDefault();
 }
 
-function AdminPortfolio() {
+
+function PortfolioContent() {
     return (
         <React.Fragment>
             <Title>Recent Deposits</Title>
@@ -24,6 +26,12 @@ function AdminPortfolio() {
             </div>
         </React.Fragment>
     );
+}
+
+function AdminPortfolio() {
+    return (
+        <AdminDashboard props={<PortfolioContent />} />
+    )
 }
 
 

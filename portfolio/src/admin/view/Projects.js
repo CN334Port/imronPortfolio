@@ -4,11 +4,10 @@ import TextField from '../../modules/components/TextField';
 
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProject, editProject } from '../../redux/dataActions'
+import AdminDashboard from './AdminDashboard';
 
 
-
-
-function AdminProjects() {
+function ProjectContent() {
     const dispatch = useDispatch();
     const user = useSelector(state => state)
 
@@ -104,6 +103,14 @@ function AdminProjects() {
                 ))}
             </Grid>
         </React.Fragment>
+    )
+}
+
+
+function AdminProjects() {
+
+    return (
+        <AdminDashboard props={<ProjectContent />} />
     );
 }
 

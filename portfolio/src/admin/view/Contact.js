@@ -2,12 +2,13 @@ import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Title from '../Title';
+import AdminDashboard from './AdminDashboard';
 
 function preventDefault(event) {
     event.preventDefault();
 }
 
-function AdminContact() {
+function ContactContent() {
     return (
         <React.Fragment>
             <Title>Recent Deposits</Title>
@@ -23,6 +24,12 @@ function AdminContact() {
                 </Link>
             </div>
         </React.Fragment>
+    );
+}
+
+function AdminContact() {
+    return (
+        <AdminDashboard props={<ContactContent />} />
     );
 }
 

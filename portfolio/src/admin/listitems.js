@@ -9,40 +9,41 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import { Link } from 'react-router-dom';
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton >
+    <ListItemButton component={Link} to="/admin/dashboard">
       <ListItemIcon >
-        <DashboardIcon onClick={() =>alert("wonyus")} />
+        <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/admin/project">
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="Projects" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/admin/portfolio">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Portfolio" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/admin/contact">
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Contact" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/admin/about">
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
       <ListItemText primary="About" />
     </ListItemButton>
-  </React.Fragment>
+  </React.Fragment >
 );
 
 export const secondaryListItems = (
